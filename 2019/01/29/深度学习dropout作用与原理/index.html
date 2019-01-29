@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="深度学习,">
 
 
 
@@ -80,16 +80,17 @@
 
 
 <meta name="description" content="Dropout 作用：避免过拟合。 Dropout与L1和L2正则化区别：L1和L2正则化通过在损失函数上增加参数的惩罚项，通过对参数大小的约束，起到类似降维的作用（若高阶项参数接近0，相当于降阶）。 进而简化模型，提高模型泛化力，避免过拟合。 L1和L2正则化修改代价函数，Dropout修改神经网络本身。  如图所示，dropout直接让一些神经元随机停止工作。 举个不恰当的例子，大家感受一下勤">
+<meta name="keywords" content="深度学习">
 <meta property="og:type" content="article">
-<meta property="og:title" content="一只上弦酱的Blog">
+<meta property="og:title" content="深度学习dropout作用与原理">
 <meta property="og:url" content="http://yoursite.com/2019/01/29/深度学习dropout作用与原理/index.html">
 <meta property="og:site_name" content="一只上弦酱的Blog">
 <meta property="og:description" content="Dropout 作用：避免过拟合。 Dropout与L1和L2正则化区别：L1和L2正则化通过在损失函数上增加参数的惩罚项，通过对参数大小的约束，起到类似降维的作用（若高阶项参数接近0，相当于降阶）。 进而简化模型，提高模型泛化力，避免过拟合。 L1和L2正则化修改代价函数，Dropout修改神经网络本身。  如图所示，dropout直接让一些神经元随机停止工作。 举个不恰当的例子，大家感受一下勤">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1731341-915845aa2970e51a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2019-01-29T08:40:45.000Z">
+<meta property="og:updated_time" content="2019-01-29T13:36:30.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="一只上弦酱的Blog">
+<meta name="twitter:title" content="深度学习dropout作用与原理">
 <meta name="twitter:description" content="Dropout 作用：避免过拟合。 Dropout与L1和L2正则化区别：L1和L2正则化通过在损失函数上增加参数的惩罚项，通过对参数大小的约束，起到类似降维的作用（若高阶项参数接近0，相当于降阶）。 进而简化模型，提高模型泛化力，避免过拟合。 L1和L2正则化修改代价函数，Dropout修改神经网络本身。  如图所示，dropout直接让一些神经元随机停止工作。 举个不恰当的例子，大家感受一下勤">
 <meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/1731341-915845aa2970e51a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
@@ -127,7 +128,7 @@
 
 
 
-  <title> | 一只上弦酱的Blog</title>
+  <title>深度学习dropout作用与原理 | 一只上弦酱的Blog</title>
   
 
 
@@ -311,7 +312,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline"></h1>
+          <h1 class="post-title" itemprop="name headline">深度学习dropout作用与原理</h1>
         
 
         <div class="post-meta">
@@ -323,7 +324,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-29T16:40:44+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-29T21:33:15+08:00">
                 2019-01-29
               </time>
             
@@ -384,6 +385,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/深度学习/" rel="tag"># 深度学习</a>
+          
+        </div>
+      
 
       
       
@@ -393,8 +400,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/01/29/scrapy创建项目及工程目录结构介绍/" rel="next" title="">
-                <i class="fa fa-chevron-left"></i> 
+              <a href="/2019/01/29/mac下adb环境变量配置/" rel="next" title="mac下adb环境变量配置">
+                <i class="fa fa-chevron-left"></i> mac下adb环境变量配置
               </a>
             
           </div>
@@ -403,8 +410,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/01/29/mac总是出现command not found解决方案/" rel="prev" title="">
-                 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/01/29/scrapy创建项目及工程目录结构介绍/" rel="prev" title="scrapy创建项目及工程目录结构介绍">
+                scrapy创建项目及工程目录结构介绍 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -484,7 +491,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -497,7 +504,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>
