@@ -363,28 +363,21 @@
       
         
           
-            <h5 id="安装scrapy"><a href="#安装scrapy" class="headerlink" title="安装scrapy"></a>安装scrapy</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install Scrapy</span><br></pre></td></tr></table></figure>
-<h5 id="进入终端，切换到自己项目代码的工作空间下，执行"><a href="#进入终端，切换到自己项目代码的工作空间下，执行" class="headerlink" title="进入终端，切换到自己项目代码的工作空间下，执行"></a>进入终端，切换到自己项目代码的工作空间下，执行</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scrapy startproject baidu_pic_spider</span><br></pre></td></tr></table></figure>
+            <h4 id="安装scrapy"><a href="#安装scrapy" class="headerlink" title="安装scrapy"></a>安装scrapy</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install Scrapy</span><br></pre></td></tr></table></figure>
+<h4 id="进入终端，切换到自己项目代码的工作空间下，执行"><a href="#进入终端，切换到自己项目代码的工作空间下，执行" class="headerlink" title="进入终端，切换到自己项目代码的工作空间下，执行"></a>进入终端，切换到自己项目代码的工作空间下，执行</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scrapy startproject baidu_pic_spider</span><br></pre></td></tr></table></figure>
 <p><img src="https://upload-images.jianshu.io/upload_images/1731341-506b0b8a62b2f62b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
-<h5 id="生成如下工程文件："><a href="#生成如下工程文件：" class="headerlink" title="生成如下工程文件："></a>生成如下工程文件：</h5><p>images是自己创建的用于存放爬到的图片目录。</p>
+<h4 id="生成如下工程文件："><a href="#生成如下工程文件：" class="headerlink" title="生成如下工程文件："></a>生成如下工程文件：</h4><p>images是自己创建的用于存放爬到的图片目录。</p>
 <p><img src="https://upload-images.jianshu.io/upload_images/1731341-9b6763e7255ed1db.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"><br>在spiders目录下创建baidu_pic_spider爬虫文件，search_word可改成自己需要的搜索词。</p>
-<h5 id="baidu-pic-spider-py"><a href="#baidu-pic-spider-py" class="headerlink" title="baidu_pic_spider.py"></a>baidu_pic_spider.py</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"># -*- coding: utf-8 -*-</span><br><span class="line"></span><br><span class="line">import scrapy, json</span><br><span class="line">from scrapy.http import Request</span><br><span class="line">from PicSpider.items import PicItem  # 导入item</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class PicSpider(scrapy.Spider):</span><br><span class="line">    name = &quot;pic_spider&quot;</span><br><span class="line">    allowed_domains = [&quot;http://image.baidu.com/&quot;]</span><br><span class="line">    start_urls = [&quot;http://image.baidu.com&quot;]</span><br><span class="line"></span><br><span class="line">    def parse(self, response):  # 定义解析函数</span><br><span class="line">        search_word = &apos;哈士奇&apos;  # 查找词，可修改</span><br><span class="line">        baidu_pic_url = &quot;https://image.baidu.com/search/acjson?tn=resultjson_com&amp;ipn=rj&amp;ct=201326592&amp;is=&amp;fp=result&amp;cl=2&amp;lm=-1&amp;ie=utf-8&amp;oe=utf-8&amp;adpicid=&amp;st=-1&amp;z=&amp;ic=0&amp;word=&#123;0&#125;&amp;s=&amp;se=&amp;tab=&amp;width=&amp;height=&amp;face=0&amp;istype=2&amp;qc=&amp;nc=1&amp;fr=&amp;pn=60&amp;rn=30&amp;gsm=3c&amp;1507915209449=&quot;.format(</span><br><span class="line">            search_word)  # 百度图片url</span><br><span class="line"></span><br><span class="line">        # 将带关键词参数的url交给request函数解析，返回的response通过get_pic回调函数进一步分析</span><br><span class="line">        yield Request(baidu_pic_url, meta=&#123;&quot;search_word&quot;: search_word&#125;, callback=self.get_pic, dont_filter=True)</span><br><span class="line"></span><br><span class="line">    def get_pic(self, response):  # 从图片list中获取每个pic的信息</span><br><span class="line"></span><br><span class="line">        item = PicItem()  # 实例化item</span><br><span class="line">        response_json = response.text  # 存储返回的json数据</span><br><span class="line">        response_dict = json.loads(response_json)  # 转化为字典</span><br><span class="line">        response_dict_data = response_dict[&apos;data&apos;]  # 图片的有效数据在data参数中</span><br><span class="line"></span><br><span class="line">        for pic in response_dict_data:  # pic为每个图片的信息数据，dict类型</span><br><span class="line">            if pic:</span><br><span class="line">                item[&apos;search_word&apos;] = response.meta[&apos;search_word&apos;]  # 搜索关键词赋值</span><br><span class="line">                item[&apos;pic_url&apos;] = [pic[&apos;middleURL&apos;]]  # 百度图片搜索结果url (setting中pic_url应该为数组形式)</span><br><span class="line">                item[&apos;pic_name&apos;] = pic[&apos;fromPageTitleEnc&apos;]  # 百度图片搜索结果对应的title</span><br><span class="line">                yield item</span><br></pre></td></tr></table></figure>
-<ul>
-<li>新建main.py文件，方便在pycharm中运行和调试爬虫。<h5 id="main-py"><a href="#main-py" class="headerlink" title="main.py"></a>main.py</h5></li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># _*_ coding: utf-8 _*_</span><br><span class="line"></span><br><span class="line">from scrapy.cmdline import execute</span><br><span class="line">import sys</span><br><span class="line">import os</span><br><span class="line">sys.path.append(os.path.dirname(os.path.abspath(__file__))) #设置工程目录</span><br><span class="line">print(os.path.dirname(os.path.abspath(__file__)))</span><br><span class="line"></span><br><span class="line">execute([&quot;scrapy&quot;,&quot;crawl&quot;,&quot;pic_spider&quot;]).strip()</span><br></pre></td></tr></table></figure>
-<ul>
-<li><p>定义item字段</p>
-<h5 id="item-py"><a href="#item-py" class="headerlink" title="item.py"></a>item.py</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># -*- coding: utf-8 -*-</span><br><span class="line"></span><br><span class="line">import scrapy</span><br><span class="line"></span><br><span class="line">class PicItem(scrapy.Item) :</span><br><span class="line">    search_word = scrapy.Field() #搜索关键字</span><br><span class="line">    pic_name = scrapy.Field() #图片标题</span><br><span class="line">    pic_url = scrapy.Field() #图片url</span><br><span class="line">    pass</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>定义pipeline</p>
-<h5 id="pipeline-py"><a href="#pipeline-py" class="headerlink" title="pipeline.py"></a>pipeline.py</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># -*- coding: utf-8 -*-</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class PicspiderPipeline(object):</span><br><span class="line">    def process_item(self, item, spider):</span><br><span class="line">        return item</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>在setting中对应部分修改ITEM_PIPELINES，并增加图片处理代码</p>
-<h5 id="settings-py"><a href="#settings-py" class="headerlink" title="settings.py"></a>settings.py</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">ITEM_PIPELINES = &#123;</span><br><span class="line"></span><br><span class="line">    &apos;PicSpider.pipelines.PicspiderPipeline&apos;: 300,</span><br><span class="line">    &apos;scrapy.pipelines.images.ImagesPipeline&apos; : 1,</span><br><span class="line">&#125;</span><br><span class="line">#配置pipeline，设定需要进行处理的图片路径</span><br><span class="line">IMAGES_URLS_FIELD = &quot;pic_url&quot;</span><br><span class="line"># 设置图片下载后的存储路径，放到工程目录下images文件夹</span><br><span class="line"># 获取当前目录绝对路径</span><br><span class="line">project_dir = os.path.abspath(os.path.dirname(__file__))</span><br><span class="line"># 获取images存储路径</span><br><span class="line">IMAGES_STORE = os.path.join(project_dir,&apos;images&apos;)</span><br><span class="line"></span><br><span class="line"># 设定处理图片的最小高度，宽度</span><br><span class="line">IMAGES_MIN_HEIGHT = 100</span><br><span class="line">IMAGES_MIN_WIDTH = 100</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h4 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h4><p><code>run main.py</code></p>
+<h4 id="baidu-pic-spider-py"><a href="#baidu-pic-spider-py" class="headerlink" title="baidu_pic_spider.py"></a>baidu_pic_spider.py</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"># -*- coding: utf-8 -*-</span><br><span class="line"></span><br><span class="line">import scrapy, json</span><br><span class="line">from scrapy.http import Request</span><br><span class="line">from PicSpider.items import PicItem  # 导入item</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class PicSpider(scrapy.Spider):</span><br><span class="line">    name = &quot;pic_spider&quot;</span><br><span class="line">    allowed_domains = [&quot;http://image.baidu.com/&quot;]</span><br><span class="line">    start_urls = [&quot;http://image.baidu.com&quot;]</span><br><span class="line"></span><br><span class="line">    def parse(self, response):  # 定义解析函数</span><br><span class="line">        search_word = &apos;哈士奇&apos;  # 查找词，可修改</span><br><span class="line">        baidu_pic_url = &quot;https://image.baidu.com/search/acjson?tn=resultjson_com&amp;ipn=rj&amp;ct=201326592&amp;is=&amp;fp=result&amp;cl=2&amp;lm=-1&amp;ie=utf-8&amp;oe=utf-8&amp;adpicid=&amp;st=-1&amp;z=&amp;ic=0&amp;word=&#123;0&#125;&amp;s=&amp;se=&amp;tab=&amp;width=&amp;height=&amp;face=0&amp;istype=2&amp;qc=&amp;nc=1&amp;fr=&amp;pn=60&amp;rn=30&amp;gsm=3c&amp;1507915209449=&quot;.format(</span><br><span class="line">            search_word)  # 百度图片url</span><br><span class="line"></span><br><span class="line">        # 将带关键词参数的url交给request函数解析，返回的response通过get_pic回调函数进一步分析</span><br><span class="line">        yield Request(baidu_pic_url, meta=&#123;&quot;search_word&quot;: search_word&#125;, callback=self.get_pic, dont_filter=True)</span><br><span class="line"></span><br><span class="line">    def get_pic(self, response):  # 从图片list中获取每个pic的信息</span><br><span class="line"></span><br><span class="line">        item = PicItem()  # 实例化item</span><br><span class="line">        response_json = response.text  # 存储返回的json数据</span><br><span class="line">        response_dict = json.loads(response_json)  # 转化为字典</span><br><span class="line">        response_dict_data = response_dict[&apos;data&apos;]  # 图片的有效数据在data参数中</span><br><span class="line"></span><br><span class="line">        for pic in response_dict_data:  # pic为每个图片的信息数据，dict类型</span><br><span class="line">            if pic:</span><br><span class="line">                item[&apos;search_word&apos;] = response.meta[&apos;search_word&apos;]  # 搜索关键词赋值</span><br><span class="line">                item[&apos;pic_url&apos;] = [pic[&apos;middleURL&apos;]]  # 百度图片搜索结果url (setting中pic_url应该为数组形式)</span><br><span class="line">                item[&apos;pic_name&apos;] = pic[&apos;fromPageTitleEnc&apos;]  # 百度图片搜索结果对应的title</span><br><span class="line">                yield item</span><br></pre></td></tr></table></figure>
+<p>新建main.py文件，方便在pycharm中运行和调试爬虫。</p>
+<h4 id="main-py"><a href="#main-py" class="headerlink" title="main.py"></a>main.py</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># _*_ coding: utf-8 _*_</span><br><span class="line"></span><br><span class="line">from scrapy.cmdline import execute</span><br><span class="line">import sys</span><br><span class="line">import os</span><br><span class="line">sys.path.append(os.path.dirname(os.path.abspath(__file__))) #设置工程目录</span><br><span class="line">print(os.path.dirname(os.path.abspath(__file__)))</span><br><span class="line"></span><br><span class="line">execute([&quot;scrapy&quot;,&quot;crawl&quot;,&quot;pic_spider&quot;]).strip()</span><br></pre></td></tr></table></figure>
+<p>定义item字段</p>
+<h4 id="item-py"><a href="#item-py" class="headerlink" title="item.py"></a>item.py</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># -*- coding: utf-8 -*-</span><br><span class="line"></span><br><span class="line">import scrapy</span><br><span class="line"></span><br><span class="line">class PicItem(scrapy.Item) :</span><br><span class="line">    search_word = scrapy.Field() #搜索关键字</span><br><span class="line">    pic_name = scrapy.Field() #图片标题</span><br><span class="line">    pic_url = scrapy.Field() #图片url</span><br><span class="line">    pass</span><br></pre></td></tr></table></figure>
+<p>定义pipeline</p>
+<h4 id="pipeline-py"><a href="#pipeline-py" class="headerlink" title="pipeline.py"></a>pipeline.py</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># -*- coding: utf-8 -*-</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class PicspiderPipeline(object):</span><br><span class="line">    def process_item(self, item, spider):</span><br><span class="line">        return item</span><br></pre></td></tr></table></figure>
+<p>在setting中对应部分修改ITEM_PIPELINES，并增加图片处理代码</p>
+<h4 id="settings-py"><a href="#settings-py" class="headerlink" title="settings.py"></a>settings.py</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">ITEM_PIPELINES = &#123;</span><br><span class="line"></span><br><span class="line">    &apos;PicSpider.pipelines.PicspiderPipeline&apos;: 300,</span><br><span class="line">    &apos;scrapy.pipelines.images.ImagesPipeline&apos; : 1,</span><br><span class="line">&#125;</span><br><span class="line">#配置pipeline，设定需要进行处理的图片路径</span><br><span class="line">IMAGES_URLS_FIELD = &quot;pic_url&quot;</span><br><span class="line"># 设置图片下载后的存储路径，放到工程目录下images文件夹</span><br><span class="line"># 获取当前目录绝对路径</span><br><span class="line">project_dir = os.path.abspath(os.path.dirname(__file__))</span><br><span class="line"># 获取images存储路径</span><br><span class="line">IMAGES_STORE = os.path.join(project_dir,&apos;images&apos;)</span><br><span class="line"></span><br><span class="line"># 设定处理图片的最小高度，宽度</span><br><span class="line">IMAGES_MIN_HEIGHT = 100</span><br><span class="line">IMAGES_MIN_WIDTH = 100</span><br></pre></td></tr></table></figure>
+<h3 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h3><p><code>run main.py</code></p>
 <p><img src="https://upload-images.jianshu.io/upload_images/1731341-0c1a4367ba1c514c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
 <p>QwQ 你瞅啥？瞅你咋地</p>
 
@@ -506,8 +499,8 @@
       
         
           
-            <h4 id="Dropout-作用："><a href="#Dropout-作用：" class="headerlink" title="Dropout 作用："></a>Dropout 作用：</h4><p><strong>避免过拟合。</strong></p>
-<h4 id="Dropout与L1和L2正则化区别："><a href="#Dropout与L1和L2正则化区别：" class="headerlink" title="Dropout与L1和L2正则化区别："></a>Dropout与L1和L2正则化区别：</h4><p>L1和L2正则化通过在<strong>损失函数上增加参数的惩罚项，通过对参数大小的约束，起到类似降维的作用</strong>（若高阶项参数接近0，相当于降阶）。</p>
+            <h3 id="Dropout-作用："><a href="#Dropout-作用：" class="headerlink" title="Dropout 作用："></a>Dropout 作用：</h3><p><strong>避免过拟合。</strong></p>
+<h3 id="Dropout与L1和L2正则化区别："><a href="#Dropout与L1和L2正则化区别：" class="headerlink" title="Dropout与L1和L2正则化区别："></a>Dropout与L1和L2正则化区别：</h3><p>L1和L2正则化通过在<strong>损失函数上增加参数的惩罚项，通过对参数大小的约束，起到类似降维的作用</strong>（若高阶项参数接近0，相当于降阶）。</p>
 <p>进而简化模型，提高模型泛化力，避免过拟合。</p>
 <p><strong>L1和L2正则化修改代价函数，Dropout修改神经网络本身。</strong></p>
 <p><img src="https://upload-images.jianshu.io/upload_images/1731341-915845aa2970e51a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
@@ -636,9 +629,9 @@
             <p>机器学习领域有个重要假设：<em>IID独立同分布假设</em></p>
 <p><strong>假设训练数据和测试数据是满足相同分布</strong></p>
 <p>独立同分布假设是通过训练集得到的模型在测试集能有好效果的基本保障。</p>
-<h4 id="Batch-Normalization作用"><a href="#Batch-Normalization作用" class="headerlink" title="Batch Normalization作用 :"></a>Batch Normalization作用 :</h4><p><strong>在深度神经网络训练过程，使得每一层神经网络的输入保持相同分布。</strong></p>
+<h3 id="Batch-Normalization作用"><a href="#Batch-Normalization作用" class="headerlink" title="Batch Normalization作用 :"></a>Batch Normalization作用 :</h3><p><strong>在深度神经网络训练过程，使得每一层神经网络的输入保持相同分布。</strong></p>
 <p>神经网络随着深度加深，训练变得困难。<br>relu激活函数， 残差网络都是解决梯度消失等由于深度带来的问题。<br>BN同样也是为了<strong>解决深度带来的问题</strong>。</p>
-<h4 id="Batch-Normalization基本思想-："><a href="#Batch-Normalization基本思想-：" class="headerlink" title="Batch Normalization基本思想 ："></a>Batch Normalization基本思想 ：</h4><p>神经网络在训练过程中，随着深度加深，输入值分布会发生偏移，向取值区间上下两端靠近，如Sigmoid函数，就会导致反向传播时低层神经网络的梯度消失，这是深层网络收敛越来越慢的重要原因。</p>
+<h3 id="Batch-Normalization基本思想-："><a href="#Batch-Normalization基本思想-：" class="headerlink" title="Batch Normalization基本思想 ："></a>Batch Normalization基本思想 ：</h3><p>神经网络在训练过程中，随着深度加深，输入值分布会发生偏移，向取值区间上下两端靠近，如Sigmoid函数，就会导致反向传播时低层神经网络的梯度消失，这是深层网络收敛越来越慢的重要原因。</p>
 <p><strong>Batch Normalization通过一定的规范化手段，把每层神经网络输入值的分布强行拉回到均值为0方差为1的标准正态分布。（纠偏回正过程）</strong></p>
 <p>使得分布回到非线性函数对输入比较敏感的区域，使得损失函数能发生较大的变化（梯度变大），避免梯度消失问题。</p>
 <p>同时梯度变大能加快模型收敛速度，提高训练速度。</p>
@@ -690,7 +683,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/29/机器学习总结笔记（个人向）/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/29/机器学习笔记（个人向）/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="上弦之月">
@@ -709,7 +702,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/01/29/机器学习总结笔记（个人向）/" itemprop="url">机器学习总结笔记（个人向）</a></h1>
+                <a class="post-title-link" href="/2019/01/29/机器学习笔记（个人向）/" itemprop="url">机器学习笔记（个人向）</a></h1>
         
 
         <div class="post-meta">
@@ -762,13 +755,13 @@
         
           
             <p>大学由于种种原因没机会学到这门课啦，出于兴趣学了下做了点小笔记qwq</p>
-<h5 id="数据预处理"><a href="#数据预处理" class="headerlink" title="数据预处理"></a>数据预处理</h5><ol>
+<h3 id="数据预处理"><a href="#数据预处理" class="headerlink" title="数据预处理"></a>数据预处理</h3><ol>
 <li>修补缺失数据</li>
 <li>去噪，去除极端数据</li>
 <li>标准化 均值 缩放到0-1之间 正态化</li>
 </ol>
-<h5 id="特征选择"><a href="#特征选择" class="headerlink" title="特征选择"></a>特征选择</h5><p>目的：数据降维，减小空间， 加速算法</p>
-<h5 id="聚类算法-k-means"><a href="#聚类算法-k-means" class="headerlink" title="聚类算法 - k-means"></a>聚类算法 - k-means</h5><ol>
+<h3 id="特征选择"><a href="#特征选择" class="headerlink" title="特征选择"></a>特征选择</h3><p>目的：数据降维，减小空间， 加速算法</p>
+<h3 id="聚类算法-k-means"><a href="#聚类算法-k-means" class="headerlink" title="聚类算法 - k-means"></a>聚类算法 - k-means</h3><ol>
 <li>随机选择k个点作为聚类中心。</li>
 <li>迭代循环</li>
 </ol>
@@ -776,14 +769,15 @@
 <li>把样本分类到离它最近的分类中心 （样本重分类）。</li>
 <li>移动聚类中心，取簇中元素的平均值作为新的聚类中心。<br>直到簇中心不再发生变化</li>
 </ul>
-<h5 id="k值的选择"><a href="#k值的选择" class="headerlink" title="k值的选择"></a>k值的选择</h5><ol>
+<h3 id="k值的选择"><a href="#k值的选择" class="headerlink" title="k值的选择"></a>k值的选择</h3><ol>
 <li>直观经验选取。</li>
 <li>肘部法则，取明显转折点。</li>
 <li>根据市场需求（ 如对T恤分为三类）</li>
 </ol>
-<h5 id="特征提取"><a href="#特征提取" class="headerlink" title="特征提取"></a>特征提取</h5><p>高维空间的特征投影到新的低维线性空间，进行降维。</p>
+<h3 id="特征提取"><a href="#特征提取" class="headerlink" title="特征提取"></a>特征提取</h3><p>高维空间的特征投影到新的低维线性空间，进行降维。</p>
+<p>无标签 </p>
 <ul>
-<li>无标签 - PCA 主成分分析</li>
+<li>PCA 主成分分析</li>
 </ul>
 <ol>
 <li>数据预处理  </li>
@@ -792,33 +786,34 @@
 <li>取前k维特征向量 </li>
 <li>计算投影后的k维特征向量</li>
 </ol>
+<p>有标签 </p>
 <ul>
-<li>有标签 - LDA 线性判别分析 （核心在于投影后保持类间区分性）</li>
+<li>LDA 线性判别分析 （核心在于投影后保持类间区分性）</li>
 </ul>
 <p>判别函数 fisher<br>J = 中心距离/类方差之和<br>J越大则类间区分性越好。</p>
-<h5 id="决策树"><a href="#决策树" class="headerlink" title="决策树"></a>决策树</h5><p>决策树是一种树结构的分类器。<br>训练集通过模型，每次根据一个属性进行分支，到叶节点得到最终分类。</p>
+<h3 id="决策树"><a href="#决策树" class="headerlink" title="决策树"></a>决策树</h3><p>决策树是一种树结构的分类器。<br>训练集通过模型，每次根据一个属性进行分支，到叶节点得到最终分类。</p>
 <p>ID3算法 - 每次选择分类能力最强（信息增益最大）的属性<br>信息增益：增加该属性后系统不确定性降低</p>
-<h5 id="集成学习"><a href="#集成学习" class="headerlink" title="集成学习"></a>集成学习</h5><p>把简单分类器集成在一起，形成强大的分类器。</p>
+<h3 id="集成学习"><a href="#集成学习" class="headerlink" title="集成学习"></a>集成学习</h3><p>把简单分类器集成在一起，形成强大的分类器。</p>
 <p>机器学习分为</p>
 <ul>
 <li>有监督 分类问题<br>单独算法 : svm 决策树 神经网络 等。<br>集成算法:  boosting bagging 等。</li>
 <li>无监督 - 聚类问题</li>
 </ul>
-<h5 id="bagging"><a href="#bagging" class="headerlink" title="bagging"></a>bagging</h5><p>数据集用bootstrap方法有放回采样<br>不同数据集 - 训练出k个分类器<br>对k 结果投票 输出多数分类</p>
-<h5 id="随机森林"><a href="#随机森林" class="headerlink" title="随机森林"></a>随机森林</h5><p>bagging实例，随机森林由一组简单决策树集成</p>
+<h3 id="bagging"><a href="#bagging" class="headerlink" title="bagging"></a>bagging</h3><p>数据集用bootstrap方法有放回采样<br>不同数据集 - 训练出k个分类器<br>对k 结果投票 输出多数分类</p>
+<h3 id="随机森林"><a href="#随机森林" class="headerlink" title="随机森林"></a>随机森林</h3><p>bagging实例，随机森林由一组简单决策树集成</p>
 <ol>
 <li>通过bootstrap有放回采样 ，得到不同输入集，分别训练出不同分类器</li>
 <li>vote出所有分类器得票高的分类结果</li>
 </ol>
 <p>随机森林一般由500-5000棵树组成。<br>一般只有2/3数据用到，1/3 out of bag数据用不到，可以拿来做交叉验证。</p>
-<h5 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h5><ol>
+<h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><ol>
 <li>大约1/3训练集不会用到，可用于天然交叉验证。</li>
 <li>通过一系列弱决策树集成为强大分类器</li>
 <li>combine不同分类器结果，解决过拟合问题</li>
 <li>决策树需要进行属性选择，随机森林随机选择属性</li>
 </ol>
-<h5 id="stackting"><a href="#stackting" class="headerlink" title="stackting"></a>stackting</h5><p>bagging加强版<br>不同分类器输出后不直接vote，加权重再通过一个分类器。</p>
-<h5 id="BOOSTING"><a href="#BOOSTING" class="headerlink" title="BOOSTING"></a>BOOSTING</h5><ol>
+<h3 id="stackting"><a href="#stackting" class="headerlink" title="stackting"></a>stackting</h3><p>bagging加强版<br>不同分类器输出后不直接vote，加权重再通过一个分类器。</p>
+<h3 id="BOOSTING"><a href="#BOOSTING" class="headerlink" title="BOOSTING"></a>BOOSTING</h3><ol>
 <li>正常生成分类器c1</li>
 <li>着重强调c1分类错的数据，加权，再训练c2</li>
 <li>把c1c2判别不一致的数据加权，训练c3</li>
@@ -828,16 +823,11 @@
 <li>bagging并行生成几百个差不多的分类器</li>
 <li>boosting串行生成目的性很强的分类器</li>
 </ul>
-<h5 id="AdaBoost"><a href="#AdaBoost" class="headerlink" title="AdaBoost"></a>AdaBoost</h5><p>每次增加分类错误样本的权重<br>最后结果是带权重分类器输出之和</p>
+<h3 id="AdaBoost"><a href="#AdaBoost" class="headerlink" title="AdaBoost"></a>AdaBoost</h3><p>每次增加分类错误样本的权重<br>最后结果是带权重分类器输出之和</p>
 <ul>
 <li>adaBoosting 权重固定</li>
 <li>region boost 动态权重 取决于输入</li>
 </ul>
-<h5 id="SVM"><a href="#SVM" class="headerlink" title="SVM"></a>SVM</h5><p>SVM的目的就是找到一个超平面，对数据进行二分类。<br>所以要求这些特征线性可分。<br>如果线性不可分，通过核函数映射到一个高维线性可分的空间后再用SVM。</p>
-<p>有比较完美数学理论作为支撑，如统计学、凸优化 。<br>最大间隔符合直观感受。</p>
-<p>超平面在两条支持向量面的正中间。<br>支持向量面: 超平面同方向且经过支持向量的平面</p>
-<p>SVM关键<br>使得两个支持向量面距离最大<br>2/w最大，即w**2/2最小</p>
-<p>svm是一个约束条件下的优化问题<br>y(wx+b)&gt;1的情况下，使得w/2最小<br>然后再转成一个对偶问题求解</p>
 
           
         
@@ -957,7 +947,7 @@
       
         
           
-            <h5 id="python版本-3-7"><a href="#python版本-3-7" class="headerlink" title="python版本 : 3.7"></a>python版本 : 3.7</h5><h5 id="简介"><a href="#简介" class="headerlink" title="简介 :"></a>简介 :</h5><p>把main_spider中user_id和cookie改为自己的id和cookie。</p>
+            <h3 id="python版本-3-7"><a href="#python版本-3-7" class="headerlink" title="python版本 : 3.7"></a>python版本 : 3.7</h3><h3 id="简介"><a href="#简介" class="headerlink" title="简介 :"></a>简介 :</h3><p>把main_spider中user_id和cookie改为自己的id和cookie。</p>
 <p>打开微博手机版 <a href="https://m.weibo.cn/" target="_blank" rel="noopener">https://m.weibo.cn/</a>  </p>
 <p>进入指定用户主页，如李荣浩的主页 : <a href="https://m.weibo.cn/u/1739046981?uid=1739046981&amp;luicode=10000011&amp;lfid=231093_-_selffollowed" target="_blank" rel="noopener">https://m.weibo.cn/u/1739046981?uid=1739046981&amp;luicode=10000011&amp;lfid=231093_-_selffollowed</a><br>其中1739046981就是<strong>用户id</strong>。</p>
 <p>登录微博，进入个人主页，右键审查元素，切换到Network栏，勾选perserve log。<br>在左边name栏找到m.weibo.cn（或者其他能找到cookie）的url，从右边response header中找到COOKIE并复制粘贴到代码中。</p>
