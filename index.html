@@ -292,7 +292,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/13/Mac-Hexo-GitHub博客搭建/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/29/mac下adb环境变量配置/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="上弦之月">
@@ -311,7 +311,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/11/13/Mac-Hexo-GitHub博客搭建/" itemprop="url">Mac+Hexo+GitHub博客搭建</a></h1>
+                <a class="post-title-link" href="/2019/01/29/mac下adb环境变量配置/" itemprop="url">未命名</a></h1>
         
 
         <div class="post-meta">
@@ -323,8 +323,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-13T15:04:05+08:00">
-                2018-11-13
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-29T16:43:57+08:00">
+                2019-01-29
               </time>
             
 
@@ -363,57 +363,1294 @@
       
         
           
-            <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><blockquote>
-<p>积土成山，风雨兴焉；积水成渊，蛟龙生焉</p>
-</blockquote>
-<p>很早之前就有搭建自己博客的想法，加上最近找实习的时候意识到了技术博客的重要，于是有了这第一篇博客。</p>
-<p>目前github博客主流是Jekyll和Hexo两种搭建方式。<br>Hexo更加简洁美观，能通过命令实现本地预览，并直接发布到web容器实现同步。</p>
-<h4 id="1-博客本地环境搭建"><a href="#1-博客本地环境搭建" class="headerlink" title="1. 博客本地环境搭建"></a>1. 博客本地环境搭建</h4><h5 id="安装node-js和git"><a href="#安装node-js和git" class="headerlink" title="安装node.js和git"></a>安装node.js和git</h5><p>因为之前就安装过node了，现在更新版本</p>
-<h5 id="查看本机node-js版本"><a href="#查看本机node-js版本" class="headerlink" title="查看本机node.js版本"></a>查看本机node.js版本</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">node -v</span><br></pre></td></tr></table></figure>
-<h5 id="清除node-js的cache"><a href="#清除node-js的cache" class="headerlink" title="清除node.js的cache"></a>清除node.js的cache</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo npm cache clean -f</span><br></pre></td></tr></table></figure>
-<h5 id="安装管理node-js版本的n"><a href="#安装管理node-js版本的n" class="headerlink" title="安装管理node.js版本的n"></a>安装管理node.js版本的n</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo npm install -g n</span><br></pre></td></tr></table></figure>
-<h5 id="安装最新版本的node-js"><a href="#安装最新版本的node-js" class="headerlink" title="安装最新版本的node.js"></a>安装最新版本的node.js</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo n stable</span><br></pre></td></tr></table></figure>
-<h5 id="验证"><a href="#验证" class="headerlink" title="验证"></a>验证</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">node -v  v11.0.0</span><br><span class="line">npm -v 6.4.1</span><br></pre></td></tr></table></figure>
-<h5 id="检查git版本"><a href="#检查git版本" class="headerlink" title="检查git版本"></a>检查git版本</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Git --version </span><br><span class="line">git version 2.14.1</span><br></pre></td></tr></table></figure>
-<h5 id="安装Hexo"><a href="#安装Hexo" class="headerlink" title="安装Hexo"></a>安装Hexo</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo npm install -g hexo</span><br><span class="line">-g表示全局安装</span><br></pre></td></tr></table></figure>
-<h5 id="博客初始化"><a href="#博客初始化" class="headerlink" title="博客初始化"></a>博客初始化</h5><p>创建存储博客的文件my_blog，并进入。<br>cd /Users/summerchaser/Desktop/my_blog </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo init</span><br><span class="line">安装npm</span><br><span class="line">sudo npm install</span><br></pre></td></tr></table></figure>
-<p>生成本地文件，开启服务器，通过<a href="http://localhost:4000查看本地博客" target="_blank" rel="noopener">http://localhost:4000查看本地博客</a></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo g</span><br><span class="line">hexo s</span><br></pre></td></tr></table></figure>
-<h3 id="2-本地博客关联github"><a href="#2-本地博客关联github" class="headerlink" title="2. 本地博客关联github"></a>2. 本地博客关联github</h3><p>新建SummerChaser.github.io仓库</p>
-<p>打开my_blog下 _config.yml，把最后deploy配置如下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repository: https://github.com/SummerChaser/SummerChaser.github.io.git</span><br><span class="line">  branch: master</span><br><span class="line">（注意type、repository、branch后均有空格）</span><br></pre></td></tr></table></figure>
-<p>在myblog下生成静态文件并上传到服务器</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo g</span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure>
-<p>执行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo d</span><br></pre></td></tr></table></figure></p>
-<p>ERROR Deployer not found: git<br>解决 ：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure></p>
-<h5 id="可通过-https-SummerChaser-github-io-访问博客"><a href="#可通过-https-SummerChaser-github-io-访问博客" class="headerlink" title="可通过 https://SummerChaser.github.io 访问博客"></a>可通过 <a href="https://SummerChaser.github.io" target="_blank" rel="noopener">https://SummerChaser.github.io</a> 访问博客</h5><p>添加ssh keys到GitHub后不需要每次更新博客再输入用户名和密码</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd ~/.ssh</span><br></pre></td></tr></table></figure>
-<p>有文件夹就有密钥</p>
-<p>更改本地博客<br>hexo g和hexo d更新到GitHub</p>
-<p>更换主题，选择 <strong>hexo-theme-next</strong><br>cd到my_blog下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /Users/summerchaser/Desktop/my_blog </span><br><span class="line">git clone https://github.com/iissnan/hexo-theme-next themes/next</span><br></pre></td></tr></table></figure></p>
-<p>更改blog目录下_config.yml<br>theme :landscape改为next</p>
-<p>每次更新博客，部署文章<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo g  //生成缓存和静态文件</span><br><span class="line">hexo d  //重新部署到服务器</span><br></pre></td></tr></table></figure></p>
-<p>网页端无变化<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo clean  //清楚缓存文件(db.json)和已生成的静态文件(public)</span><br></pre></td></tr></table></figure></p>
-<p>配置next主题<br>官网 ： <a href="http://theme-next.iissnan.com/getting-started.html" target="_blank" rel="noopener">http://theme-next.iissnan.com/getting-started.html</a></p>
-<h5 id="主题设定，选择Scheme"><a href="#主题设定，选择Scheme" class="headerlink" title="主题设定，选择Scheme"></a>主题设定，选择Scheme</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">● Muse - 默认 Scheme，这是 NexT 最初的版本，黑白主调，大量留白</span><br><span class="line">● Mist - Muse 的紧凑版本，整洁有序的单栏外观</span><br><span class="line">● Pisces - 双栏 Scheme，小家碧玉似的清新</span><br></pre></td></tr></table></figure>
-<p>修改my_blog/themes/next/_config.yml </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">scheme: Muse</span><br><span class="line">#scheme: Mist</span><br><span class="line">#scheme: Pisces</span><br><span class="line">#scheme: Gemini</span><br><span class="line">选择Pisces去掉#</span><br></pre></td></tr></table></figure>
-<h5 id="设置语言"><a href="#设置语言" class="headerlink" title="设置语言"></a>设置语言</h5><p>修改my_blog/_config.yml </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">language: zh-Hans</span><br></pre></td></tr></table></figure>
-<h5 id="菜单配置"><a href="#菜单配置" class="headerlink" title="菜单配置"></a>菜单配置</h5><p>修改my_blog/themes/next/_config.yml</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">menu:</span><br><span class="line">  home: / || home</span><br><span class="line">  #about: /about/ || user</span><br><span class="line">  #tags: /tags/ || tags</span><br><span class="line">  #categories: /categories/ || th</span><br><span class="line">  archives: /archives/ || archive</span><br><span class="line">  #schedule: /schedule/ || calendar</span><br><span class="line">  #sitemap: /sitemap.xml || sitemap</span><br><span class="line">  #commonweal: /404/ || heartbeat</span><br><span class="line">去掉#</span><br></pre></td></tr></table></figure>
-<h5 id="设置侧栏"><a href="#设置侧栏" class="headerlink" title="设置侧栏"></a>设置侧栏</h5><p>修改my_blog/themes/next/_config.yml</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sidebar:</span><br><span class="line">  # Sidebar Position, available value: left | right (only for Pisces | Gemini).</span><br><span class="line">  position: left</span><br></pre></td></tr></table></figure>
-<h5 id="设置侧栏展示时机"><a href="#设置侧栏展示时机" class="headerlink" title="设置侧栏展示时机"></a>设置侧栏展示时机</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">display: always</span><br></pre></td></tr></table></figure>
-<h5 id="设置头像"><a href="#设置头像" class="headerlink" title="设置头像"></a>设置头像</h5><p>修改my_blog/themes/next/_config.yml<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">修改字段 avatar， 值设置成头像的链接地址</span><br><span class="line">可放置在 source/images/ 目录下 </span><br><span class="line">配置为：avatar: /images/my_icon.jpg</span><br></pre></td></tr></table></figure></p>
-<h5 id="设置作者名称"><a href="#设置作者名称" class="headerlink" title="设置作者名称"></a>设置作者名称</h5><p>编辑 站点配置文件，设置 author为昵称。</p>
-<h5 id="站点描述"><a href="#站点描述" class="headerlink" title="站点描述"></a>站点描述</h5><p>编辑 站点配置文件，设置 description 字段为站点描述</p>
-<h4 id="Hexo的一些基本命令"><a href="#Hexo的一些基本命令" class="headerlink" title="Hexo的一些基本命令"></a>Hexo的一些基本命令</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">hexo g #完整命令为hexo generate,用于生成静态文件</span><br><span class="line">hexo s #完整命令为hexo server,用于启动服务器，主要用来本地预览</span><br><span class="line">hexo d #完整命令为hexo deploy,用于将本地文件发布到github等git仓库上</span><br><span class="line">hexo n &quot;my article&quot; #完整命令为hexo new,用于新建一篇名为“my article”的文章</span><br></pre></td></tr></table></figure>
-<h4 id="发布第一篇文章"><a href="#发布第一篇文章" class="headerlink" title="发布第一篇文章"></a>发布第一篇文章</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo n &quot;Mac+Hexo+GitHub博客搭建&quot;</span><br></pre></td></tr></table></figure>
-<p>显示<br>Created: ~/Desktop/my_blog/source/_posts/Mac-Hexo-GitHub博客搭建.md<br>编辑md文件，重新部署</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo g</span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure>
-<h5 id="博客初步搭建成功！"><a href="#博客初步搭建成功！" class="headerlink" title="博客初步搭建成功！"></a>博客初步搭建成功！</h5>
+            <h4 id="adb介绍"><a href="#adb介绍" class="headerlink" title="adb介绍"></a>adb介绍</h4><p>adb全称Android Debug Bridge，简单说就是通过<strong>命令行调试手机</strong>，特别是当手机gg进不了系统时会很有用。</p>
+<ol>
+<li>Homebrew 安装<figure class="highlight plain"><figcaption><span>install android-platform-tools```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">2. 配置环境变量</span><br><span class="line"></span><br><span class="line">- 打开终端，入当前用户的home目录</span><br><span class="line">- 打开.bash_profile文件，如果不存在先创建，可以用vim</span><br><span class="line">```open .bash_profile</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>在文末加入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">export ANDROID_HOME=/Users/yourname/Library/Android/sdk</span><br><span class="line">export PATH=$PATH:$ANDROID_HOME/tools</span><br><span class="line">export PATH=$PATH:$ANDROID_HOME/platform-tools</span><br></pre></td></tr></table></figure></p>
+<ol start="3">
+<li><figure class="highlight plain"><figcaption><span>.bash_profile```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">4. 输入adb devices，验证是否安装成功，成功如下</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>MacBook-Pro-3:~ summerchaser$ adb devices<br>List of devices attached</p>
+<ul>
+<li>daemon not running. starting it now on port 5037 *</li>
+<li>daemon started successfully *<br>fb5ad7b3    unauthorized<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">【注意】</span><br><span class="line">1. 请在文末加入，我一开始加在开头，导致其他命令都不能用了，各种commond not found，解决方法看我另一篇博客。</span><br><span class="line">2. ANDROID_HOME改成自己的sdk目录，可以在android studio查看</span><br><span class="line">![](https://upload-images.jianshu.io/upload_images/1731341-08ae36c156bf70a5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)</span><br><span class="line"></span><br><span class="line">-----------</span><br><span class="line">##### 常用ADB命令</span><br><span class="line"></span><br><span class="line">- adb push 电脑端路径 手机端路径   用于将文件推送到手机</span><br><span class="line">``` </span><br><span class="line">adb push D:/DCIM /sdcard/    即可从将D盘的DCIM文件夹复制到存储根目录</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li>adb reboot 参数</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">adb reboot  手机会正常重启</span><br><span class="line">adb reboot recovery  手机会重启到recovery卡刷模式</span><br><span class="line">adb reboot bootloader  手机会重启到bootloader（fastboot）线刷模式</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/29/mac总是出现command not found解决方案/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="上弦之月">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/my_icon.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一只上弦酱的Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/01/29/mac总是出现command not found解决方案/" itemprop="url">未命名</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-29T16:41:36+08:00">
+                2019-01-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h6 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h6><p>可能是”.bash_profile”文件编辑有误。</p>
+<p>我是在配置adb环境变量时，编辑.bash_profile文件出现错误，造成各种命令失效</p>
+<p>######解决方法</p>
+<ol>
+<li><p>在命令中输入：</p>
+<figure class="highlight plain"><figcaption><span>PATH</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">这样可让命令暂时可用</span><br><span class="line"></span><br><span class="line">2. 打开“.bash_profile”文件</span><br><span class="line">```open .bash_profile</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改“.bash_profile”正确后，保存。</p>
+</li>
+<li>重新编译<br><code>source .bash_profile</code></li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/29/深度学习dropout作用与原理/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="上弦之月">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/my_icon.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一只上弦酱的Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/01/29/深度学习dropout作用与原理/" itemprop="url">未命名</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-29T16:40:44+08:00">
+                2019-01-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="Dropout-作用："><a href="#Dropout-作用：" class="headerlink" title="Dropout 作用："></a>Dropout 作用：</h4><p><strong>避免过拟合。</strong></p>
+<h4 id="Dropout与L1和L2正则化区别："><a href="#Dropout与L1和L2正则化区别：" class="headerlink" title="Dropout与L1和L2正则化区别："></a>Dropout与L1和L2正则化区别：</h4><p>L1和L2正则化通过在<strong>损失函数上增加参数的惩罚项，通过对参数大小的约束，起到类似降维的作用</strong>（若高阶项参数接近0，相当于降阶）。</p>
+<p>进而简化模型，提高模型泛化力，避免过拟合。</p>
+<p><strong>L1和L2正则化修改代价函数，Dropout修改神经网络本身。</strong></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/1731341-915845aa2970e51a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<p>如图所示，dropout直接让一些神经元<strong>随机停止工作。</strong></p>
+<p>举个不恰当的例子，大家感受一下<br>勤劳的神经元们事无巨细地干活，花大量时间<strong>把不重要的特征都学到了（过拟合）</strong>，按这种方式去做其他事效率就很低（模型泛化能力差）</p>
+<p>现在随机挑选几个神经元组成<strong>小团队高效地工作</strong>（精兵简政），不仅速度快，效率高，工作的内容更有重点，还消除<strong>减弱了神经元节点间的联合适应性，增强了泛化能力。</strong></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/29/scrapy创建项目及工程目录结构介绍/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="上弦之月">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/my_icon.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一只上弦酱的Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/01/29/scrapy创建项目及工程目录结构介绍/" itemprop="url">未命名</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-29T16:40:04+08:00">
+                2019-01-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>进入创建的虚拟环境<br>（比如我的为 /Users/summerchaser/Desktop/pyenv/all_article）</p>
+<p>python virtualenv虚拟环境安装配置 可见 :<br><a href="https://www.jianshu.com/p/6d72cd0ae827" target="_blank" rel="noopener">https://www.jianshu.com/p/6d72cd0ae827</a></p>
+<p>创建scrapy项目<br>终端运行<br><figure class="highlight plain"><figcaption><span>startproject ArticleSpider```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">再通过pychrame导入新建的项目</span><br><span class="line">完整工程目录结构如下 :</span><br><span class="line"></span><br><span class="line">![image.png](https://upload-images.jianshu.io/upload_images/1731341-8137c4c7cd306134.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)</span><br><span class="line"></span><br><span class="line">- setting ：存放基本配置</span><br><span class="line">```BOT_NAME = &apos;ArticleSpider&apos;</span><br><span class="line">SPIDER_MODULES = [&apos;ArticleSpider.spiders&apos;]</span><br><span class="line">NEWSPIDER_MODULE = &apos;ArticleSpider.spiders&apos;</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>pipeline ： 数据处理相关文件</li>
+<li>spider文件夹 : 存放爬虫文件</li>
+<li><p>items ：类似django的form，定义爬取的字段</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># define the fields for your item here like:</span><br><span class="line"># name = scrapy.Field()</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>middleware ：中间层处理函数</p>
+</li>
+</ul>
+<p>######创建通用模板的爬虫文件<br>cd到项目文件夹下</p>
+<p>终端运行</p>
+<ul>
+<li>scrapy genspider 爬虫文件名 允许的域名<figure class="highlight plain"><figcaption><span>genspider spider_article blog.jobbole.com```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">会在ArticleSpider文件夹下创建spider_article.py</span><br><span class="line"></span><br><span class="line">成功信息</span><br><span class="line">&gt;Created spider &apos;spider_article&apos; using template &apos;basic&apos; in module:</span><br><span class="line">  ArticleSpider.spiders.spider_article</span><br><span class="line"></span><br><span class="line">基本框架已经为我们写好了</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>class SpiderArticleSpider(scrapy.Spider):<br>    name = ‘spider_article’<br>    allowed_domains = [‘blog.jobbole.com’]  # 允许搜索的域名</p>
+<pre><code># 起始url - 所有文章列表页
+start_urls = []
+</code></pre><p>  def parse(self, response):<br>  pass<br><code>`</code></p>
+<p>设置里更改为虚拟环境下的python解释器，比如我的是<br>/Users/summerchaser/Desktop/pyenv/all_article/bin/python</p>
+<p>apply</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/29/安装scrapy框架twisted报错解决方案/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="上弦之月">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/my_icon.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一只上弦酱的Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/01/29/安装scrapy框架twisted报错解决方案/" itemprop="url">未命名</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-29T16:39:29+08:00">
+                2019-01-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>虚拟环境下，安装scrapy框架（清华镜像）<br><figure class="highlight plain"><figcaption><span>install -i</span><a href="https://pypi.tuna.tsinghua.edu.cn/simple/" target="_blank" rel="noopener">scrapy```</a></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&gt;When using pip install Twisted in virtualenv on Mac osx 10.9.4, I get this result:</span><br><span class="line">Command &quot;python setup.py egg_info&quot; failed with error code 1 in /private/var/folders/9r/3b500gbs3093ms87mqqbckr80000gn/T/pip-build-doynftp7/twisted/</span><br><span class="line"></span><br><span class="line">参考链接</span><br><span class="line">[https://stackoverflow.com/questions/42129767/pip-install-twisted-error-1/43895561#43895561](https://stackoverflow.com/questions/42129767/pip-install-twisted-error-1/43895561#43895561)</span><br><span class="line"></span><br><span class="line">#####解决方式</span><br><span class="line">这个问题卡了我好几个小时，最后发现关键在于**更新incremental**</span><br><span class="line"></span><br><span class="line">- 更新incrementa</span><br><span class="line">```pip install -i https://pypi.tuna.tsinghua.edu.cn/simple/  --upgrade incremental</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>安装Twisted<figure class="highlight plain"><figcaption><span>install -i</span><a href="https://pypi.tuna.tsinghua.edu.cn/simple/" target="_blank" rel="noopener">Twisted```</a></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">- 安装scrapy</span><br><span class="line">```pip install -i https://pypi.tuna.tsinghua.edu.cn/simple/  scrapy</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/29/Scrapy爬虫去重策略与url的深广优先遍历/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="上弦之月">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/my_icon.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一只上弦酱的Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/01/29/Scrapy爬虫去重策略与url的深广优先遍历/" itemprop="url">未命名</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-29T16:38:37+08:00">
+                2019-01-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>scrapy是抓取web站点，并提取结构化数据的python框架。</p>
+<p>爬取网站的过程相当于<strong>遍历一棵树</strong>的过程，每个子节点相当于一个url</p>
+<h5 id="深度优先遍历（递归实现）："><a href="#深度优先遍历（递归实现）：" class="headerlink" title="深度优先遍历（递归实现）："></a>深度优先遍历（递归实现）：</h5><p>对每一个分支路径深入到不能再深入位置，且每个节点只能访问一次。</p>
+<ul>
+<li>先序遍历：对任一子树，先访问根，然后遍历其左子树，最后遍历其右子树。</li>
+<li>中序遍历：对任一子树，先遍历其左子树，然后访问根，最后遍历其右子树。</li>
+<li>后序遍历：对任一子树，先遍历其左子树，然后遍历其右子树，最后访问根。</li>
+</ul>
+<p><img src="https://upload-images.jianshu.io/upload_images/1731341-023a2f3eb4feccbf.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="深度优先png"></p>
+<p>#####广度优先遍历（队列实现）：<br>又叫层次遍历，从上往下对每一层依次访问，在每一层中，从左往右（也可以从右往左）访问结点，访问完一层就进入下一层，直到没有结点可访问</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/1731341-a0cefb631c6af297.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="广度优先.png"></p>
+<p>网站url结构是一种有层次的树结构<br>而url连接结构图是有<strong>回路</strong>的</p>
+<p>要避免陷入反复爬取某些页面的循环<br>就需要<strong>url去重</strong>，记录已经爬取过的url</p>
+<h5 id="爬虫去重策略"><a href="#爬虫去重策略" class="headerlink" title="爬虫去重策略"></a>爬虫去重策略</h5><ol>
+<li>把url保存到数据库中，每次在数据库中查询</li>
+<li>访问过的url保存到set，O（1）代价可查询url，但是占用空间大</li>
+<li>把url通过md5方法压缩长度，哈希保存到set （scrapy方法）</li>
+<li>bitmap，把访问过的url通过hash函数映射到某一位（bit），缺点是冲突高，但能极大减少内存。</li>
+<li>bloomfilter改进，多重hash降低冲突。</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/29/scrapy爬虫基础知识之正则表达式/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="上弦之月">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/my_icon.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一只上弦酱的Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/01/29/scrapy爬虫基础知识之正则表达式/" itemprop="url">未命名</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-29T16:37:02+08:00">
+                2019-01-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h4><p>作用:<br><strong>判断某个子串是否符合某个模式，并提取关键部分</strong></p>
+<h5 id="正则表达式常用限定词含义"><a href="#正则表达式常用限定词含义" class="headerlink" title="正则表达式常用限定词含义"></a>正则表达式常用限定词含义</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">^b 代表以b开头</span><br><span class="line">.  v代表任意字符</span><br><span class="line">*  代表前面字符可以重复任意多次（包括0次）</span><br><span class="line">.* 代表任意字符串</span><br><span class="line">3$ 字符串必须以3结尾</span><br><span class="line">？非贪婪匹配模式</span><br><span class="line">+ 出现至少一次</span><br><span class="line">&#123;1&#125; 限定前面字符出现的次数为1次</span><br><span class="line">&#123;2,&#125; 限定前面字符出现的次数至少两次</span><br><span class="line">&#123;2,5&#125; 限定前面字符出现的次数至少两次最多5次</span><br><span class="line">str1|str2 匹配到str1或str2</span><br><span class="line">regex_str = &quot;^b.*&quot;  （以b为开头的任意字串）</span><br><span class="line">[abcd] 可以为abcd中任何一个字符</span><br><span class="line">[0-9] 0-9区间的任意数字</span><br><span class="line">[^1] 不为1</span><br><span class="line">[] 内的字符没有特殊含义 [*]就是*本身</span><br><span class="line">\s 代表空格</span><br><span class="line">\S 代表非空格</span><br><span class="line">\w 效果等于[a-zA-Z0-9_]</span><br><span class="line">\W 代表非[a-zA-Z0-9_]</span><br><span class="line">[\u4E00-\u9FA5]代表是个汉字</span><br><span class="line">\d  数字</span><br></pre></td></tr></table></figure>
+<h5 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">import re  # 导入正则表达式包</span><br><span class="line">regex_str = &quot;^b.*&quot; # 模式串</span><br><span class="line">line = &quot;b1&quot;  # 待匹配串</span><br><span class="line">print(re.match(regex_str,line))</span><br></pre></td></tr></table></figure>
+<p>进行匹配，如果成功返回模式匹配的变量<br>结果: </p>
+<p>&lt;_sre.SRE_Match object; span=(0, 2), match=’b1’&gt;</p>
+<p>正则表达式的贪婪匹配</p>
+<ul>
+<li>匹配项 line =  “gooooogg”</li>
+<li>模式串 regex_str = “.<em>(g.</em>g).*”<br>() 代表提取具有该特征的子串</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">```match_obj.group(1) ```返回匹配的一个特征子串，即（）内的东西</span><br><span class="line"></span><br><span class="line">结果为gg 而不是gooooog</span><br><span class="line"></span><br><span class="line">原因为 ：括号两端字符 (g 和 g) </span><br><span class="line">为由贪婪匹配得到的，最后一个满足要求的字符</span><br><span class="line"></span><br><span class="line">```regex_str = &quot;.*？(g.*g).*&quot;</span><br></pre></td></tr></table></figure>
+<p>？表示非贪婪匹配，返回第一个符合要求的字符<br>这次输出为 gooooogg</p>
+<p>原因 ：<br>虽然第一个g是非贪婪匹配到的，符合要求的第一个字符，但是第二个g还是贪婪匹配（前面没有？），匹配到最后的g</p>
+<p>修正 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输出为 gooooog </span><br><span class="line"></span><br><span class="line">```&quot;.*(b.+b).*&quot;</span><br></pre></td></tr></table></figure></p>
+<p>提取的子串b和b之前至少有一个字符</p>
+<figure class="highlight plain"><figcaption><span>```能匹配到b123或者a123</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">电话号码常见匹配</span><br><span class="line">```（1[48357][0-9]&#123;9&#125;</span><br></pre></td></tr></table></figure>
+<p>比如要提取 study in 北京大学字段<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">最后只能匹配到京大学</span><br><span class="line">需要使用 ```.*？（[\u4E00-\u9FA5]+大学）</span><br></pre></td></tr></table></figure></p>
+<p>取消贪婪匹配</p>
+<p>提取”出生于1999年“的年份<br>“.<em>(\d+)年” 只能提取到9年<br>可以”.</em>？(\d+)年” 取消贪婪<br>或者”.*(\d{4})年” </p>
+<h5 id="综合实例-处理不同格式的生日提取"><a href="#综合实例-处理不同格式的生日提取" class="headerlink" title="综合实例 - 处理不同格式的生日提取"></a>综合实例 - 处理不同格式的生日提取</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">line = &quot;xxx出生于1999/10/1&quot;</span><br><span class="line">line = &quot;xxx出生于1999-10-1&quot;</span><br><span class="line">line = &quot;xxx出生于199910-01&quot;</span><br><span class="line">line = &quot;xxx出生于1999-10&quot;</span><br></pre></td></tr></table></figure>
+<p><code>regex_str=&quot;.*出生于（\d{4}[年/-]\d{1,2}([月/-]$|\[月/-]d{1,2})|$）&quot;</code></p>
+<p>因为最后的结尾有三种可能 </p>
+<p>其他</p>
+<ul>
+<li>scrapy基于twisted的异步IO框架，性能是其最大优势。</li>
+<li>scrapy内置 css/xpath selector，能方便地对html进行分析</li>
+<li>beautifulsoup重要缺点 ：慢</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/29/【python virtualenv】虚拟环境安装配置/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="上弦之月">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/my_icon.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一只上弦酱的Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/01/29/【python virtualenv】虚拟环境安装配置/" itemprop="url">未命名</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-29T16:35:04+08:00">
+                2019-01-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>python virtualenv 虚拟环境安装配置</p>
+<p>作用 ：<br>各个项目沙箱环境相互隔离，避免包冲突和混乱</p>
+<p>安装<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip install virtualenv</span><br><span class="line">pip install virtualenvwrapper  # 虚拟环境辅助包</span><br></pre></td></tr></table></figure></p>
+<p>mac环境下<br><figure class="highlight vim"><figcaption><span>~/.bashrc```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">```</span><br><span class="line">alias <span class="keyword">python3</span>=<span class="string">'/Library/Frameworks/Python.framework/Versions/3.5/bin/python3.5'</span></span><br><span class="line">alias pyenv3=<span class="string">'mkvirtualenv  --python=/Library/Frameworks/Python.framework/Versions/3.5/bin/python3.5'</span></span><br><span class="line">export WORKON_HOME=$HOME/.virtualenvs</span><br><span class="line"><span class="keyword">source</span> /Library/Frameworks/Python.framework/Versions/<span class="number">2.7</span>/bin/virtualenvwrapper.<span class="keyword">sh</span></span><br></pre></td></tr></table></figure></p>
+<p>每次使用虚拟环境前都要<br><figure class="highlight plain"><figcaption><span>~/.bashrc ```（血泪教训）</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">把虚拟环境默认目录改到桌面</span><br><span class="line">把 &quot;~/.bashrc&quot; 下</span><br></pre></td></tr></table></figure></p>
+<p>export WORKON_HOME=$HOME/.virtualenvs<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">改成```$HOME/Desktop/pyenv</span><br></pre></td></tr></table></figure></p>
+<p>:wq保存并退出</p>
+<p>创建的项目就在桌面这个目录下了（之前创建的项目可以直接拷贝过来）</p>
+<p>常用命令</p>
+<ul>
+<li><p>创建py3.5虚拟环境 <figure class="highlight plain"><figcaption><span>your_project```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">- 查看所有虚拟环境项目 ```workon</span><br></pre></td></tr></table></figure></p>
+</li>
+<li><p>切换项目 <figure class="highlight plain"><figcaption><span>your_project```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">- 查看当前虚拟环境包情况 ```pip list</span><br></pre></td></tr></table></figure></p>
+</li>
+<li><p>退出虚拟环境 <code>deactivate</code></p>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/29/【爬虫】parse.urljoin（）把相对地址转化为绝对地址/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="上弦之月">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/my_icon.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一只上弦酱的Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/01/29/【爬虫】parse.urljoin（）把相对地址转化为绝对地址/" itemprop="url">未命名</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-29T16:34:25+08:00">
+                2019-01-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">from urllib import parse</span><br><span class="line">url=parse.urljoin(response.url, post_url)</span><br></pre></td></tr></table></figure>
+<p>作用 : <strong>把一个基地址和相对地址智能连接成一个绝对地址</strong></p>
+<p>这是一个很神奇而智能的函数，大概感受一下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">urljoin(&quot;http://www.google.com/1/aaa.html&quot;,&quot;bbbb.html&quot;)</span><br><span class="line">&apos;http://www.google.com/1/bbbb.html&apos;</span><br><span class="line">urljoin(&quot;http://www.google.com/1/aaa.html&quot;,&quot;2/bbbb.html&quot;)</span><br><span class="line">&apos;http://www.google.com/1/2/bbbb.html&apos;</span><br><span class="line">urljoin(&quot;http://www.google.com/1/aaa.html&quot;,&quot;/2/bbbb.html&quot;)</span><br><span class="line">&apos;http://www.google.com/2/bbbb.html&apos;</span><br><span class="line">urljoin(&quot;http://www.google.com/1/aaa.html&quot;,&quot;http://www.google.com/3/ccc.html&quot;)</span><br><span class="line">&apos;http://www.google.com/3/ccc.html&apos;</span><br><span class="line">urljoin(&quot;http://www.google.com/1/aaa.html&quot;,&quot;http://www.google.com/ccc.html&quot;)</span><br><span class="line">&apos;http://www.google.com/ccc.html&apos;</span><br><span class="line">urljoin(&quot;http://www.google.com/1/aaa.html&quot;,&quot;javascript:void(0)&quot;)</span><br><span class="line">&apos;javascript:void(0)&apos;</span><br></pre></td></tr></table></figure></p>
+<p>在一个爬取伯乐在线文章的项目中用到以下代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">print(response.url)  # http://blog.jobbole.com/all-posts/</span><br><span class="line">print(post_url)  # http://blog.jobbole.com/114523/</span><br><span class="line">print(parse.urljoin(response.url, post_url) )  # http://blog.jobbole.com/114523/</span><br><span class="line">yield Request(url=parse.urljoin(response.url, post_url), meta=&#123;&quot;cover_img&quot;: img_url&#125;,callback=self.parse_detail)</span><br></pre></td></tr></table></figure></p>
+<p>这里post_url本身就是有效的绝对地址，因而和基地址response.url使用urljoin后还是原地址。</p>
+<p>但是为了<strong>避免取出的文章url是相对地址</strong>的情况，还是使用<br><code>url=parse.urljoin(response.url, post_url)</code>的形式。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/29/机器学习总结笔记（个人向）/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="上弦之月">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/my_icon.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一只上弦酱的Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/01/29/机器学习总结笔记（个人向）/" itemprop="url">未命名</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-29T16:33:34+08:00">
+                2019-01-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>大学由于种种原因没机会学到这门课啦，出于兴趣学了下做了点小笔记qwq</p>
+<h5 id="数据预处理"><a href="#数据预处理" class="headerlink" title="数据预处理"></a>数据预处理</h5><ol>
+<li>修补缺失数据</li>
+<li>去噪，去除极端数据</li>
+<li>标准化 均值 缩放到0-1之间 正态化</li>
+</ol>
+<h5 id="特征选择"><a href="#特征选择" class="headerlink" title="特征选择"></a>特征选择</h5><p>目的：数据降维，减小空间， 加速算法</p>
+<h5 id="聚类算法-k-means"><a href="#聚类算法-k-means" class="headerlink" title="聚类算法 - k-means"></a>聚类算法 - k-means</h5><ol>
+<li>随机选择k个点作为聚类中心。</li>
+<li>迭代循环</li>
+</ol>
+<ul>
+<li>把样本分类到离它最近的分类中心 （样本重分类）。</li>
+<li>移动聚类中心，取簇中元素的平均值作为新的聚类中心。<br>直到簇中心不再发生变化</li>
+</ul>
+<h5 id="k值的选择"><a href="#k值的选择" class="headerlink" title="k值的选择"></a>k值的选择</h5><ol>
+<li>直观经验选取。</li>
+<li>肘部法则，取明显转折点。</li>
+<li>根据市场需求（ 如对T恤分为三类）</li>
+</ol>
+<h5 id="特征提取"><a href="#特征提取" class="headerlink" title="特征提取"></a>特征提取</h5><p>高维空间的特征投影到新的低维线性空间，进行降维。</p>
+<ul>
+<li>无标签 - PCA 主成分分析</li>
+</ul>
+<ol>
+<li>数据预处理  </li>
+<li>构造协方差矩阵 </li>
+<li>svd奇异值分解 </li>
+<li>取前k维特征向量 </li>
+<li>计算投影后的k维特征向量</li>
+</ol>
+<ul>
+<li>有标签 - LDA 线性判别分析 （核心在于投影后保持类间区分性）</li>
+</ul>
+<p>判别函数 fisher<br>J = 中心距离/类方差之和<br>J越大则类间区分性越好。</p>
+<h5 id="决策树"><a href="#决策树" class="headerlink" title="决策树"></a>决策树</h5><p>决策树是一种树结构的分类器。<br>训练集通过模型，每次根据一个属性进行分支，到叶节点得到最终分类。</p>
+<p>ID3算法 - 每次选择分类能力最强（信息增益最大）的属性<br>信息增益：增加该属性后系统不确定性降低</p>
+<h5 id="集成学习"><a href="#集成学习" class="headerlink" title="集成学习"></a>集成学习</h5><p>把简单分类器集成在一起，形成强大的分类器。</p>
+<p>机器学习分为</p>
+<ul>
+<li>有监督 分类问题<br>单独算法 : svm 决策树 神经网络 等。<br>集成算法:  boosting bagging 等。</li>
+<li>无监督 - 聚类问题</li>
+</ul>
+<h5 id="bagging"><a href="#bagging" class="headerlink" title="bagging"></a>bagging</h5><p>数据集用bootstrap方法有放回采样<br>不同数据集 - 训练出k个分类器<br>对k 结果投票 输出多数分类</p>
+<h5 id="随机森林"><a href="#随机森林" class="headerlink" title="随机森林"></a>随机森林</h5><p>bagging实例，随机森林由一组简单决策树集成</p>
+<ol>
+<li>通过bootstrap有放回采样 ，得到不同输入集，分别训练出不同分类器</li>
+<li>vote出所有分类器得票高的分类结果</li>
+</ol>
+<p>随机森林一般由500-5000棵树组成。<br>一般只有2/3数据用到，1/3 out of bag数据用不到，可以拿来做交叉验证。</p>
+<h6 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h6><ol>
+<li>大约1/3训练集不会用到，可用于天然交叉验证。</li>
+<li>通过一系列弱决策树集成为强大分类器</li>
+<li>combine不同分类器结果，解决过拟合问题</li>
+<li>决策树需要进行属性选择，随机森林随机选择属性</li>
+</ol>
+<h5 id="stackting"><a href="#stackting" class="headerlink" title="stackting"></a>stackting</h5><p>bagging加强版<br>不同分类器输出后不直接vote，加权重再通过一个分类器。</p>
+<h5 id="BOOSTING"><a href="#BOOSTING" class="headerlink" title="BOOSTING"></a>BOOSTING</h5><ol>
+<li>正常生成分类器c1</li>
+<li>着重强调c1分类错的数据，加权，再训练c2</li>
+<li>把c1c2判别不一致的数据加权，训练c3</li>
+</ol>
+<p>c2解决c1分类错的地方，c3解决c1c2争端</p>
+<ul>
+<li>bagging并行生成几百个差不多的分类器</li>
+<li>boosting串行生成目的性很强的分类器</li>
+</ul>
+<h5 id="AdaBoost"><a href="#AdaBoost" class="headerlink" title="AdaBoost"></a>AdaBoost</h5><p>每次增加分类错误样本的权重<br>最后结果是带权重分类器输出之和</p>
+<ul>
+<li>adaBoosting 权重固定</li>
+<li>region boost 动态权重 取决于输入</li>
+</ul>
+<h5 id="SVM"><a href="#SVM" class="headerlink" title="SVM"></a>SVM</h5><p>SVM的目的就是找到一个超平面，对数据进行二分类。<br>所以要求这些特征线性可分。<br>如果线性不可分，通过核函数映射到一个高维线性可分的空间后再用SVM。</p>
+<p>有比较完美数学理论作为支撑，如统计学、凸优化 。<br>最大间隔符合直观感受。</p>
+<p>超平面在两条支持向量面的正中间。<br>支持向量面: 超平面同方向且经过支持向量的平面</p>
+<p>SVM关键<br>使得两个支持向量面距离最大<br>2/w最大，即w**2/2最小</p>
+<p>svm是一个约束条件下的优化问题<br>y(wx+b)&gt;1的情况下，使得w/2最小<br>然后再转成一个对偶问题求解</p>
+
           
         
       
@@ -451,6 +1688,10 @@
   </section>
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
 
 
           </div>
@@ -496,7 +1737,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-count">15</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -546,7 +1787,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>

@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="大学由于种种原因没机会学到这门课啦，出于兴趣学了下做了点小笔记qwq 数据预处理 修补缺失数据 去噪，去除极端数据 标准化 均值 缩放到0-1之间 正态化  特征选择目的：数据降维，减小空间， 加速算法 聚类算法 - k-means 随机选择k个点作为聚类中心。 迭代循环   把样本分类到离它最近的分类中心 （样本重分类）。 移动聚类中心，取簇中元素的平均值作为新的聚类中心。直到簇中心不再发生变化">
+<meta property="og:type" content="article">
+<meta property="og:title" content="一只上弦酱的Blog">
+<meta property="og:url" content="http://yoursite.com/2019/01/29/机器学习总结笔记（个人向）/index.html">
+<meta property="og:site_name" content="一只上弦酱的Blog">
+<meta property="og:description" content="大学由于种种原因没机会学到这门课啦，出于兴趣学了下做了点小笔记qwq 数据预处理 修补缺失数据 去噪，去除极端数据 标准化 均值 缩放到0-1之间 正态化  特征选择目的：数据降维，减小空间， 加速算法 聚类算法 - k-means 随机选择k个点作为聚类中心。 迭代循环   把样本分类到离它最近的分类中心 （样本重分类）。 移动聚类中心，取簇中元素的平均值作为新的聚类中心。直到簇中心不再发生变化">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-01-29T08:33:35.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="一只上弦酱的Blog">
+<meta name="twitter:description" content="大学由于种种原因没机会学到这门课啦，出于兴趣学了下做了点小笔记qwq 数据预处理 修补缺失数据 去噪，去除极端数据 标准化 均值 缩放到0-1之间 正态化  特征选择目的：数据降维，减小空间， 加速算法 聚类算法 - k-means 随机选择k个点作为聚类中心。 迭代循环   把样本分类到离它最近的分类中心 （样本重分类）。 移动聚类中心，取簇中元素的平均值作为新的聚类中心。直到簇中心不再发生变化">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/01/29/机器学习总结笔记（个人向）/">
+
+
+
+
+
+  <title> | 一只上弦酱的Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">一只上弦酱的Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-schedule">
+          <a href="/schedule/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br>
+            
+            日程表
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>
+            
+            站点地图
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/29/机器学习总结笔记（个人向）/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="上弦之月">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/my_icon.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一只上弦酱的Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline"></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-29T16:33:34+08:00">
+                2019-01-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>大学由于种种原因没机会学到这门课啦，出于兴趣学了下做了点小笔记qwq</p>
+<h5 id="数据预处理"><a href="#数据预处理" class="headerlink" title="数据预处理"></a>数据预处理</h5><ol>
+<li>修补缺失数据</li>
+<li>去噪，去除极端数据</li>
+<li>标准化 均值 缩放到0-1之间 正态化</li>
+</ol>
+<h5 id="特征选择"><a href="#特征选择" class="headerlink" title="特征选择"></a>特征选择</h5><p>目的：数据降维，减小空间， 加速算法</p>
+<h5 id="聚类算法-k-means"><a href="#聚类算法-k-means" class="headerlink" title="聚类算法 - k-means"></a>聚类算法 - k-means</h5><ol>
+<li>随机选择k个点作为聚类中心。</li>
+<li>迭代循环</li>
+</ol>
+<ul>
+<li>把样本分类到离它最近的分类中心 （样本重分类）。</li>
+<li>移动聚类中心，取簇中元素的平均值作为新的聚类中心。<br>直到簇中心不再发生变化</li>
+</ul>
+<h5 id="k值的选择"><a href="#k值的选择" class="headerlink" title="k值的选择"></a>k值的选择</h5><ol>
+<li>直观经验选取。</li>
+<li>肘部法则，取明显转折点。</li>
+<li>根据市场需求（ 如对T恤分为三类）</li>
+</ol>
+<h5 id="特征提取"><a href="#特征提取" class="headerlink" title="特征提取"></a>特征提取</h5><p>高维空间的特征投影到新的低维线性空间，进行降维。</p>
+<ul>
+<li>无标签 - PCA 主成分分析</li>
+</ul>
+<ol>
+<li>数据预处理  </li>
+<li>构造协方差矩阵 </li>
+<li>svd奇异值分解 </li>
+<li>取前k维特征向量 </li>
+<li>计算投影后的k维特征向量</li>
+</ol>
+<ul>
+<li>有标签 - LDA 线性判别分析 （核心在于投影后保持类间区分性）</li>
+</ul>
+<p>判别函数 fisher<br>J = 中心距离/类方差之和<br>J越大则类间区分性越好。</p>
+<h5 id="决策树"><a href="#决策树" class="headerlink" title="决策树"></a>决策树</h5><p>决策树是一种树结构的分类器。<br>训练集通过模型，每次根据一个属性进行分支，到叶节点得到最终分类。</p>
+<p>ID3算法 - 每次选择分类能力最强（信息增益最大）的属性<br>信息增益：增加该属性后系统不确定性降低</p>
+<h5 id="集成学习"><a href="#集成学习" class="headerlink" title="集成学习"></a>集成学习</h5><p>把简单分类器集成在一起，形成强大的分类器。</p>
+<p>机器学习分为</p>
+<ul>
+<li>有监督 分类问题<br>单独算法 : svm 决策树 神经网络 等。<br>集成算法:  boosting bagging 等。</li>
+<li>无监督 - 聚类问题</li>
+</ul>
+<h5 id="bagging"><a href="#bagging" class="headerlink" title="bagging"></a>bagging</h5><p>数据集用bootstrap方法有放回采样<br>不同数据集 - 训练出k个分类器<br>对k 结果投票 输出多数分类</p>
+<h5 id="随机森林"><a href="#随机森林" class="headerlink" title="随机森林"></a>随机森林</h5><p>bagging实例，随机森林由一组简单决策树集成</p>
+<ol>
+<li>通过bootstrap有放回采样 ，得到不同输入集，分别训练出不同分类器</li>
+<li>vote出所有分类器得票高的分类结果</li>
+</ol>
+<p>随机森林一般由500-5000棵树组成。<br>一般只有2/3数据用到，1/3 out of bag数据用不到，可以拿来做交叉验证。</p>
+<h6 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h6><ol>
+<li>大约1/3训练集不会用到，可用于天然交叉验证。</li>
+<li>通过一系列弱决策树集成为强大分类器</li>
+<li>combine不同分类器结果，解决过拟合问题</li>
+<li>决策树需要进行属性选择，随机森林随机选择属性</li>
+</ol>
+<h5 id="stackting"><a href="#stackting" class="headerlink" title="stackting"></a>stackting</h5><p>bagging加强版<br>不同分类器输出后不直接vote，加权重再通过一个分类器。</p>
+<h5 id="BOOSTING"><a href="#BOOSTING" class="headerlink" title="BOOSTING"></a>BOOSTING</h5><ol>
+<li>正常生成分类器c1</li>
+<li>着重强调c1分类错的数据，加权，再训练c2</li>
+<li>把c1c2判别不一致的数据加权，训练c3</li>
+</ol>
+<p>c2解决c1分类错的地方，c3解决c1c2争端</p>
+<ul>
+<li>bagging并行生成几百个差不多的分类器</li>
+<li>boosting串行生成目的性很强的分类器</li>
+</ul>
+<h5 id="AdaBoost"><a href="#AdaBoost" class="headerlink" title="AdaBoost"></a>AdaBoost</h5><p>每次增加分类错误样本的权重<br>最后结果是带权重分类器输出之和</p>
+<ul>
+<li>adaBoosting 权重固定</li>
+<li>region boost 动态权重 取决于输入</li>
+</ul>
+<h5 id="SVM"><a href="#SVM" class="headerlink" title="SVM"></a>SVM</h5><p>SVM的目的就是找到一个超平面，对数据进行二分类。<br>所以要求这些特征线性可分。<br>如果线性不可分，通过核函数映射到一个高维线性可分的空间后再用SVM。</p>
+<p>有比较完美数学理论作为支撑，如统计学、凸优化 。<br>最大间隔符合直观感受。</p>
+<p>超平面在两条支持向量面的正中间。<br>支持向量面: 超平面同方向且经过支持向量的平面</p>
+<p>SVM关键<br>使得两个支持向量面距离最大<br>2/w最大，即w**2/2最小</p>
+<p>svm是一个约束条件下的优化问题<br>y(wx+b)&gt;1的情况下，使得w/2最小<br>然后再转成一个对偶问题求解</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/01/29/深度学习Batch Normalization作用与原理/" rel="next" title="">
+                <i class="fa fa-chevron-left"></i> 
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/01/29/【爬虫】parse.urljoin（）把相对地址转化为绝对地址/" rel="prev" title="">
+                 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/my_icon.jpg" alt="上弦之月">
+            
+              <p class="site-author-name" itemprop="name">上弦之月</p>
+              <p class="site-description motion-element" itemprop="description">“Nothing is really over until the moment you stop trying”</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#数据预处理"><span class="nav-number">1.</span> <span class="nav-text">数据预处理</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#特征选择"><span class="nav-number">2.</span> <span class="nav-text">特征选择</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#聚类算法-k-means"><span class="nav-number">3.</span> <span class="nav-text">聚类算法 - k-means</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#k值的选择"><span class="nav-number">4.</span> <span class="nav-text">k值的选择</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#特征提取"><span class="nav-number">5.</span> <span class="nav-text">特征提取</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#决策树"><span class="nav-number">6.</span> <span class="nav-text">决策树</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#集成学习"><span class="nav-number">7.</span> <span class="nav-text">集成学习</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#bagging"><span class="nav-number">8.</span> <span class="nav-text">bagging</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#随机森林"><span class="nav-number">9.</span> <span class="nav-text">随机森林</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#优点"><span class="nav-number">9.1.</span> <span class="nav-text">优点</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#stackting"><span class="nav-number">10.</span> <span class="nav-text">stackting</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#BOOSTING"><span class="nav-number">11.</span> <span class="nav-text">BOOSTING</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#AdaBoost"><span class="nav-number">12.</span> <span class="nav-text">AdaBoost</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#SVM"><span class="nav-number">13.</span> <span class="nav-text">SVM</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">上弦之月</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
