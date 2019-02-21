@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="深度学习,">
+  <meta name="keywords" content="Hexo, NexT">
 
 
 
@@ -81,20 +81,16 @@
 
 
 
-<meta name="description" content="Dropout 作用：避免过拟合。 Dropout与L1和L2正则化区别：L1和L2正则化通过在损失函数上增加参数的惩罚项，通过对参数大小的约束，起到类似降维的作用（若高阶项参数接近0，相当于降阶）。 进而简化模型，提高模型泛化力，避免过拟合。 L1和L2正则化修改代价函数，Dropout修改神经网络本身。  如图所示，dropout直接让一些神经元随机停止工作。 举个不恰当的例子，大家感受一下勤">
-<meta name="keywords" content="深度学习">
-<meta property="og:type" content="article">
-<meta property="og:title" content="深度学习dropout作用与原理">
-<meta property="og:url" content="http://yoursite.com/2019/01/29/深度学习dropout作用与原理/index.html">
+<meta name="description" content="“如歌亦如酒，且醉且彷徨。”">
+<meta property="og:type" content="website">
+<meta property="og:title" content="一只上弦酱的Blog">
+<meta property="og:url" content="http://yoursite.com/categories/碎碎念/index.html">
 <meta property="og:site_name" content="一只上弦酱的Blog">
-<meta property="og:description" content="Dropout 作用：避免过拟合。 Dropout与L1和L2正则化区别：L1和L2正则化通过在损失函数上增加参数的惩罚项，通过对参数大小的约束，起到类似降维的作用（若高阶项参数接近0，相当于降阶）。 进而简化模型，提高模型泛化力，避免过拟合。 L1和L2正则化修改代价函数，Dropout修改神经网络本身。  如图所示，dropout直接让一些神经元随机停止工作。 举个不恰当的例子，大家感受一下勤">
+<meta property="og:description" content="“如歌亦如酒，且醉且彷徨。”">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1731341-915845aa2970e51a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2019-01-30T07:22:50.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="深度学习dropout作用与原理">
-<meta name="twitter:description" content="Dropout 作用：避免过拟合。 Dropout与L1和L2正则化区别：L1和L2正则化通过在损失函数上增加参数的惩罚项，通过对参数大小的约束，起到类似降维的作用（若高阶项参数接近0，相当于降阶）。 进而简化模型，提高模型泛化力，避免过拟合。 L1和L2正则化修改代价函数，Dropout修改神经网络本身。  如图所示，dropout直接让一些神经元随机停止工作。 举个不恰当的例子，大家感受一下勤">
-<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/1731341-915845aa2970e51a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta name="twitter:title" content="一只上弦酱的Blog">
+<meta name="twitter:description" content="“如歌亦如酒，且醉且彷徨。”">
 
 
 
@@ -124,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/01/29/深度学习dropout作用与原理/">
+  <link rel="canonical" href="http://yoursite.com/categories/碎碎念/">
 
 
 
 
 
-  <title>深度学习dropout作用与原理 | 一只上弦酱的Blog</title>
+  <title>分类: 碎碎念 | 一只上弦酱的Blog</title>
   
 
 
@@ -151,7 +147,7 @@
     
   
 
-  <div class="container sidebar-position-left page-post-detail">
+  <div class="container sidebar-position-left ">
     <div class="headband"></div>
 
 <!--     <a style="position:absolute;" href="https://github.com/SummerChaser"><img width="149" height="149" src="https://github.blog/wp-content/uploads/2008/12/forkme_right_darkblue_121621.png?resize=149%2C149" class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1"></a>
@@ -258,180 +254,53 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-expand">
-    
+  
+  
+  
+  <div class="post-block category">
 
-  
+    <div id="posts" class="posts-collapse">
+      <div class="collection-title">
+        <h1>碎碎念<small>分类</small>
+        </h1>
+      </div>
 
-  
-  
-  
+      
+        
 
   <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/29/深度学习dropout作用与原理/">
+    <header class="post-header">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="上弦之月">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/my_icon.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="一只上弦酱的Blog">
-    </span>
-
-    
-      <header class="post-header">
-
+      <h2 class="post-title">
         
+            <a class="post-title-link" href="/2019/02/21/Vultr搭建SSR梯子科学（fan）上网（qiang）/" itemprop="url">
+              
+                <span itemprop="name">Vultr搭建SSR梯子科学（fan）上网（qiang）</span>
+              
+            </a>
         
-          <h1 class="post-title" itemprop="name headline">深度学习dropout作用与原理</h1>
-        
+      </h2>
 
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-29T21:33:15+08:00">
-                2019-01-29
-              </time>
-            
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated" datetime="2019-02-21T13:53:46+08:00" content="2019-02-21">
+          02-21
+        </time>
+      </div>
 
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/深度学习/" itemprop="url" rel="index">
-                    <span itemprop="name">深度学习</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        <h3 id="Dropout-作用："><a href="#Dropout-作用：" class="headerlink" title="Dropout 作用："></a>Dropout 作用：</h3><p><strong>避免过拟合。</strong></p>
-<h3 id="Dropout与L1和L2正则化区别："><a href="#Dropout与L1和L2正则化区别：" class="headerlink" title="Dropout与L1和L2正则化区别："></a>Dropout与L1和L2正则化区别：</h3><p>L1和L2正则化通过在<strong>损失函数上增加参数的惩罚项，通过对参数大小的约束，起到类似降维的作用</strong>（若高阶项参数接近0，相当于降阶）。</p>
-<p>进而简化模型，提高模型泛化力，避免过拟合。</p>
-<p><strong>L1和L2正则化修改代价函数，Dropout修改神经网络本身。</strong></p>
-<p><img src="https://upload-images.jianshu.io/upload_images/1731341-915845aa2970e51a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
-<p>如图所示，dropout直接让一些神经元<strong>随机停止工作。</strong></p>
-<p>举个不恰当的例子，大家感受一下<br>勤劳的神经元们事无巨细地干活，花大量时间<strong>把不重要的特征都学到了（过拟合）</strong>，按这种方式去做其他事效率就很低（模型泛化能力差）</p>
-<p>现在随机挑选几个神经元组成<strong>小团队高效地工作</strong>（精兵简政），不仅速度快，效率高，工作的内容更有重点，还消除<strong>减弱了神经元节点间的联合适应性，增强了泛化能力。</strong></p>
-
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/深度学习/" rel="tag"># 深度学习</a>
-          
-        </div>
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2019/01/29/深度学习Batch-Normalization作用与原理/" rel="next" title="深度学习Batch Normalization作用与原理">
-                <i class="fa fa-chevron-left"></i> 深度学习Batch Normalization作用与原理
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/01/29/【python爬虫】Scrapy爬取百度图片并保存到本地/" rel="prev" title="【python爬虫】Scrapy爬取百度图片并保存到本地">
-                【python爬虫】Scrapy爬取百度图片并保存到本地 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </div>
-  
-  
-  
+    </header>
   </article>
 
 
-
-    <div class="post-spread">
       
     </div>
+
   </div>
+  
+  
+  
+
+  
+
 
 
           </div>
@@ -439,10 +308,6 @@
 
 
           
-
-  
-
-
 
         </div>
         
@@ -463,17 +328,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -545,22 +401,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Dropout-作用："><span class="nav-number">1.</span> <span class="nav-text">Dropout 作用：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Dropout与L1和L2正则化区别："><span class="nav-number">2.</span> <span class="nav-text">Dropout与L1和L2正则化区别：</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
@@ -702,10 +542,6 @@
 
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
-
-
 
   
 

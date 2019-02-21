@@ -269,6 +269,189 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/21/Vultr搭建SSR梯子科学（fan）上网（qiang）/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="上弦之月">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/my_icon.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一只上弦酱的Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/02/21/Vultr搭建SSR梯子科学（fan）上网（qiang）/" itemprop="url">Vultr搭建SSR梯子科学（fan）上网（qiang）</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-21T13:53:46+08:00">
+                2019-02-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/碎碎念/" itemprop="url" rel="index">
+                    <span itemprop="name">碎碎念</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>####一、 创建服务器</p>
+<p>现在主流服务器是搬瓦工和vultr，搬瓦工其实配置起来比较简单（官网后台一键傻瓜式配置）。</p>
+<p>但是想起来某年月日往vultr账号里充过钱还没用完QAQ，所以我选择Vultr。</p>
+<p>官网地址 ： <a href="https://www.vultr.com/" target="_blank" rel="noopener">https://www.vultr.com/</a></p>
+<p><strong>注册账号</strong>（有时候搞活动，可以通过特定链接注册享受优惠，可以网上搜一下）</p>
+<p>和搬瓦工不同的是，vultr需要先<strong>充值</strong>，最少10刀，可以用支付宝付款。<br><img src="https://upload-images.jianshu.io/upload_images/1731341-879a39327b672f69.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<p>交完钱后，开始<strong>创建服务器</strong></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/1731341-e116b46107510647.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<p>选择右上角加号创建服务器。</p>
+<p>首先选择服务器location，试过日本，纽约，硅谷都还挺稳的，这里选硅谷的服务器。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/1731341-5f0ca7a2a2fff29a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<p>服务器系统默认是centos7（建议用centos7，网上教程大多基于centos7可以避免自己踩坑），现在价格最便宜居然要5刀了？？心疼QAQ<br><img src="https://upload-images.jianshu.io/upload_images/1731341-5b084d814183c50a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<p>后面那些选项不用管，默认就好，选择deploy now<br><img src="https://upload-images.jianshu.io/upload_images/1731341-9e30cb0c80eebefd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<p>服务器创建完成。<br><img src="https://upload-images.jianshu.io/upload_images/1731341-31d1607a8f0add48.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<p>点击查看详情<br><img src="https://upload-images.jianshu.io/upload_images/1731341-7d5fe6f4e9f0359c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<p>到终端ping一下自己服务器的ID，看能不能连上<br><img src="https://upload-images.jianshu.io/upload_images/1731341-142f1d684d9a7d32.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<p>####二、SSR搭建梯子</p>
+<p>记下服务器的账号（一般是root）和密码。</p>
+<p>下一步是<strong>远程连接服务器</strong>，手机可以用JuiceSSH，电脑可以putty，xshell等。<br>我用的是mac自带远程连接工具，不需要下载软件。</p>
+<p>这里举例如何用mac自带的连接工具，远程登录刚创建好的服务器。</p>
+<ol>
+<li><p>打开终端，选择新建远程连接<br><img src="https://upload-images.jianshu.io/upload_images/1731341-a40cfd062f31e7e6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+</li>
+<li><p>点击服务器栏下方的加号，添加服务器ip，双击添加的服务器，选择连接。<br><img src="https://upload-images.jianshu.io/upload_images/1731341-c7a3a679b1382acb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+</li>
+</ol>
+<p>这里遇到一个坑，输入正确的密码却发现permission denied。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/1731341-5e718e7da408eb0e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<p>原因在于我不是用root登录的，解决方法：<br>直接终端运行 <figure class="highlight plain"><figcaption><span>root@149.28.215.230 ```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">![image.png](https://upload-images.jianshu.io/upload_images/1731341-3bb15c0b95683451.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)</span><br><span class="line">可以看到登录成功了。</span><br><span class="line"></span><br><span class="line">远程登录服务器后，运行SSR代码三连（逐条进行）</span><br></pre></td></tr></table></figure></p>
+<p>wget –no-check-certificate <a href="https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocksR.sh" target="_blank" rel="noopener">https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocksR.sh</a></p>
+<p>chmod +x shadowsocksR.sh</p>
+<p>./shadowsocksR.sh 2&gt;&amp;1 | tee shadowsocksR.log<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">进入如下界面</span><br><span class="line">![image.png](https://upload-images.jianshu.io/upload_images/1731341-ef7cd2f342b2c148.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)</span><br><span class="line"></span><br><span class="line">依次输入你的密码（如不设定，默认是teddysun.com），服务器端口（默认从 9000-19999 之间随机生成），加密方式（默认aes-256-cfb），回车选择协议（默认为 origin）等。</span><br><span class="line"></span><br><span class="line">可以设置个密码然后一路回车，代码开始run，几分钟后运行结束。</span><br><span class="line"></span><br><span class="line">（下面敲黑板！QAQ）</span><br><span class="line">**出现红色字体的配置信息，非常重要，建议截图保存。（后面就是用shadowsock通过这些配置信息进行fan墙）**</span><br><span class="line"></span><br><span class="line">![image.png](https://upload-images.jianshu.io/upload_images/1731341-72e890a8b9149a52.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)</span><br><span class="line"></span><br><span class="line">#####SSR修改密码以及配置多端口（选看）</span><br><span class="line"></span><br><span class="line">终端运行 ```vi /etc/shadowsocks.json</span><br></pre></td></tr></table></figure></p>
+<p>修改配置如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">   &#123;</span><br><span class="line">    &quot;server&quot;: &quot;0.0.0.0&quot;,</span><br><span class="line">    &quot;server_ipv6&quot;: &quot;::&quot;,</span><br><span class="line">    &quot;local_address&quot;: &quot;127.0.0.1&quot;,</span><br><span class="line">    &quot;local_port&quot;: 1081,</span><br><span class="line">    &quot;port_password&quot;:&#123;</span><br><span class="line">        &quot;端口1&quot;:&quot;密码1&quot;,</span><br><span class="line">        &quot;端口2&quot;:&quot;密码2&quot;,</span><br><span class="line">        &quot;端口3&quot;:&quot;密码3&quot;,</span><br><span class="line">        &quot;端口4&quot;:&quot;密码4&quot;</span><br><span class="line">    &#125;,</span><br><span class="line">    &quot;timeout&quot;: 120,</span><br><span class="line">    &quot;udp_timeout&quot;: 60,</span><br><span class="line">    &quot;method&quot;: &quot;chacha20&quot;,</span><br><span class="line">    &quot;protocol&quot;: &quot;auth_sha1_compatible&quot;,</span><br><span class="line">    &quot;protocol_param&quot;: &quot;&quot;,</span><br><span class="line">    &quot;obfs&quot;: &quot;http_simple_compatible&quot;,</span><br><span class="line">    &quot;obfs_param&quot;: &quot;&quot;,</span><br><span class="line">    &quot;dns_ipv6&quot;: false,</span><br><span class="line">    &quot;connect_verbose_info&quot;: 0,</span><br><span class="line">    &quot;redirect&quot;: &quot;&quot;,</span><br><span class="line">    &quot;fast_open&quot;: false,</span><br><span class="line">    &quot;workers&quot;: 1</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>:wq保存退出</p>
+<p>终端输入<figure class="highlight plain"><figcaption><span>restart ```重启ssr</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">####使用Shadowsocks科学上网</span><br><span class="line"></span><br><span class="line">github搜索shadowsocks，下载对应版本。</span><br><span class="line">window版本 ： https://github.com/shadowsocks/shadowsocks-windows</span><br><span class="line">安卓版本 ： https://github.com/shadowsocks/shadowsocks-android</span><br><span class="line">mac版本 ： https://github.com/shadowsocks/ShadowsocksX-NG</span><br><span class="line">IOS版被不幸&quot;Removed according to regulations&quot;了。</span><br><span class="line"></span><br><span class="line">mac版下载安装完如下</span><br><span class="line">![image.png](https://upload-images.jianshu.io/upload_images/1731341-5360926802422fc3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)</span><br><span class="line"></span><br><span class="line">选择服务器设置</span><br><span class="line">![image.png](https://upload-images.jianshu.io/upload_images/1731341-94d20a42ebf00797.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)</span><br><span class="line"></span><br><span class="line">![image.png](https://upload-images.jianshu.io/upload_images/1731341-e33f68988bdf7ce4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)</span><br><span class="line"></span><br><span class="line">填入刚才保存的配置信息就能愉快地科学（fan）上网（qiang）了！QWQ</span><br><span class="line"></span><br><span class="line">![image.png](https://upload-images.jianshu.io/upload_images/1731341-79f102b0677dea32.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)</span><br><span class="line"></span><br><span class="line">但是...发现看油管很是卡顿，于是打算弄个锐速加速。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#####centos7安装锐速加快连接速度</span><br><span class="line">连接服务器，运行uname -r</span><br><span class="line">![image.png](https://upload-images.jianshu.io/upload_images/1731341-d616b8ec4bf68750.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)</span><br><span class="line"></span><br><span class="line">以3开头说明服务器为 CentOS7 x64 系统</span><br><span class="line"></span><br><span class="line">运行如下命令</span><br><span class="line">```wget --no-check-certificate -O rskernel.sh https://raw.githubusercontent.com/uxh/shadowsocks_bash/master/rskernel.sh &amp;&amp; bash rskernel.sh</span><br></pre></td></tr></table></figure></p>
+<p>系统开始自动下载脚本并更换内核，内核更换完毕后，系统会重启。</p>
+<p>重新连接服务器，运行如下命令<br>yum install net-tools -y &amp;&amp; wget –no-check-certificate -O appex.sh <a href="https://raw.githubusercontent.com/0oVicero0/serverSpeeder_Install/master/appex.sh" target="_blank" rel="noopener">https://raw.githubusercontent.com/0oVicero0/serverSpeeder_Install/master/appex.sh</a> &amp;&amp; bash appex.sh install</p>
+<p>接着一路回车<br><img src="https://upload-images.jianshu.io/upload_images/1731341-ea6c06a870a5a374.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<p>显示running表示锐速安装成功以及开机自启动。<br><img src="https://upload-images.jianshu.io/upload_images/1731341-76bc9f3d4e50b7ab.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<p>成功！QAQ</p>
+<p>看油管果然舒服多了</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/1731341-d5a0ee7efbb6ac40.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/29/【python爬虫】Scrapy爬取百度图片并保存到本地/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1321,7 +1504,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1332,7 +1515,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -1343,7 +1526,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
